@@ -174,7 +174,50 @@ export const ResetPassword=asyncWrapper(async(req,res,next)=>
         {
             return next(new BadRequestError(errors.array()[0].msg));
         }
+    // checking if password match
+    if(req.body.password!==req.body.confirmPassword)
     {
-
+        return next (new BadRequestError("Password does not match"))
     }
+    //verify token
+    const decoded= await jwt.verify(req.body.token,process.env.JWT_SECRET_KEY)
+    if(!decoded)
+    {
+        return next(new UnauthorizedError("Invalid Token"))
+    }
+    //checking if token saved on database
+    const recordedToken= await Token.findOne({token:req.body.token})
+    if(decoded.id!=req.body.id || recordedToken.user!=req.body.id)
+    {
+        return next(new UnauthorizedError("Invalid token"))
+    }
+    // checking if token was expired
+    if(new Date(recordedToken.expirationDate).getTime() < new Date().getTime())
+    {
+        return next(new UnauthorizedError("Token expired"))
+    }
+    //find user
+    const Founderuser= await UserModel.findById(req.body.id)
+    if(!Founderuser)
+    {
+        return next(new NotfoundError("User not found"))
+    }
+    // Deleting user token
+    await Token.findByIdAndDelete(recordedToken._id)
+    // hashing password
+    const hashedpassword=await bcryptjs.hashSync(req.body.password,10)
+    // Updating user password
+    Founderuser.password=hashedpassword
+    const savedUser=await Founderuser.save()
+    if(savedUser)
+    {
+        return res.status(200).json(
+            {
+                message:"Password reset successfully",
+                user:savedUser
+            }
+        )
+    }
+
+    
 })

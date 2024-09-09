@@ -25,7 +25,7 @@ const userSchema=new schema({
     },
     confirmPassword:{
         type:String,
-        required:true,
+        required:false,
         message:["Please enter your Confirmpassword"]
     },
     role:{
