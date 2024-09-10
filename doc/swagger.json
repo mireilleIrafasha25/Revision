@@ -1,0 +1,393 @@
+{
+    "swagger":"2.0",
+    "info":{
+        "version":"1.0.0",
+        "title":"User Management API",
+        "description":"A simple API for managing users",
+        "contact":{
+            "email":"mireilleirafasha@gmail.com"
+        },
+        "license":{
+            "name":"MIT License",
+            "url":"https://opensource.org/licenses/MIT"
+        }
+    },
+    "externalDocs":{
+        "description":"Find more info here",
+        "url":"https://github.com/mireilleIrafasha25/Revision.git"
+    },
+    "basePath":"/weeding",
+    "host":"localhost:5009",
+    "servers":[
+        {
+            "url":"http://localhost:5009",
+            "description":"Local server"
+        },
+        {
+            "url":"https://api.example.com",
+            "description":"Production server"
+        }
+    ],
+    "schemes":[
+        "http",
+        "https"
+    ],
+    "tags":[
+        {
+            "name":"revision",
+    "description":"Operation on managing user management"}
+    ],
+    "paths":{
+        "/user/signup":{
+            "post": {
+                "tags": [
+                  "Users"
+                ],
+                "summary": "Create a new user",
+                "description": "Create a new user",
+                "parameters": [
+                  {
+                    "name": "body",
+                    "in": "body",
+                    "required": true,
+                    "schema": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                ],
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "201": {
+                    "description": "User created",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      }
+                    }
+                  },
+                  "400": {
+                    "description": "Bad request -Validation error",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+        },
+        "/user/verify":{
+          "post":{
+            "tags":[
+              "Users"
+            ],
+            "summary":"Verify user account",
+            "description":"Verify user account",
+            "parameters":[
+              {
+                "name":"body",
+                "in":"body",
+                "required":true,
+                "schema":{
+                  "$ref":"#/components/schemas/User"
+                }
+              }],
+              "requestBody":{
+                "content":{
+                  "application/json":{
+                    "schema":{
+                      "$ref":"#/components/schemas/User"
+                    }
+                  }
+                }
+              },
+              "responses":{
+                "200":{
+                  "description":"User signed in",
+                  "content":{
+                    "application/json":{
+                      "schema":{
+                        "$ref":"#/components/schemas/User"
+                      }
+                    }
+                  }
+                },
+                "400":{
+                  "description":"Bad request -Validation error",
+                  "content":{
+                    "application/json":{
+                      "schema":{
+                        "type":"object",
+                        "properties":{
+                          "message":{
+                            "type":"string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "401":{
+                  "description":"Unauthorized - OTP expired",
+                  "content":{
+                    "application/json":{
+                      "schema":{
+                        "type":"object",
+                        "properties":{
+                          "message":{
+                            "type":"string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "/user/signin":{
+          "post":{
+            "tags":["Users"],
+            "summary":"Sign in user",
+            "description":"Sign in user",
+            "parameters":[
+              {
+                "name":"body",
+                "in":"body",
+                "required":true,
+                "schema":{
+                  "$ref":"#/components/schemas/User"
+                }
+              }],
+              "requestBody":{
+                "content":{
+                  "application/json":{
+                    "schema":{
+                      "$ref":"#/components/schemas/User"
+                    }
+                  }
+                }
+              },
+              "responses":{
+                "200":{
+                  "description":"User signed in",
+                  "content":{
+                    "application/json":{
+                      "schema":{
+                        "$ref":"#/components/schemas/User"
+                      }
+                    }
+                  }
+                },
+                "400":{
+                  "description":"Bad request -Validation error",
+                  "content":{
+                    "application/json":{
+                      "schema":{
+                        "type":"object",
+                        "properties":{
+                          "message":{
+                            "type":"string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "/user/forgotPassword":{
+          "post":{
+            "tags":["Users"],
+            "summary":"forgot password",
+            "description":"Forgot Your Password",
+            "parameters":[
+              {
+                "name":"body",
+                "in":"body",
+                "required":true,
+                "schema":{
+                  "$ref":"#/components/schemas/User"
+                }
+              }],
+              "requestBody":{
+                "content":{
+                  "application/json":{
+                    "schema":{
+                      "$ref":"#/components/schemas/User"
+                    }
+                  }
+                }
+              },
+              "responses":{
+                "200":{
+                  "description":"User's email sent",
+                  "content":{
+                    "application/json":{
+                        "schema":{
+                          "type":"object",
+                          "properties":{
+                            "message":{
+                              "type":"string"
+                            }
+                          }
+                        }
+                    }
+                  }
+                },
+                "400":{
+                  "description":"Bad request -Validation error",
+                  "content":{
+                    "application/json":{
+                        "schema":{
+                          "type":"object",
+                          "properties":{
+                            "message":{
+                              "type":"string"
+                            }
+                          }
+                        }
+                    }
+                  }
+                },
+                "404":{
+                  "description":"User not found",
+                  "content":{
+                    "application/json":{
+                        "schema":{
+                          "type":"object",
+                          "properties":{
+                            "message":{
+                              "type":"string"
+                            }
+                          }
+                        }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "/user/resetPassword":{
+          "post":{
+            "tags":["Users"],
+            "summary":"Reset password",
+            "description":"Reset Your Password",
+            "parameters":[
+              {
+                "name":"body",
+                "in":"body",
+                "required":true,
+                "schema":{
+                  "$ref":"#/components/schemas/User"
+                }
+              }
+            ],
+            "requestBody":{
+              "content":{
+                "application/json":{
+                    "schema":{
+                        "$ref":"#/components/schemas/User"
+                    }
+                }
+              }
+            },
+            "responses":{
+              "200":{
+                "description":"Password reset successfully",
+                "content":{
+                  "application/json":{
+                        "schema":{
+                          "type":"object",
+                          "properties":{
+                            "message":{
+                              "type":"string"
+                            }
+                          }
+                        }
+                    }
+                }
+              },
+              "400":{
+                "description":"Bad request -Validation error -Invalid token",
+                "content":{
+                  "application/json":{
+                        "schema":{
+                          "type":"object",
+                          "properties":{
+                            "message":{
+                              "type":"string"
+                            }
+                          }
+                        }
+                    }
+                }
+              },
+              "401":{
+                "description":"Unauthorized - Token expired",
+                "content":{
+                  "application/json":{
+                        "schema":{
+                          "type":"object",
+                          "properties":{
+                            "message":{
+                              "type":"string"
+                            }
+                          }
+                        }
+                    }
+                }
+              }
+            }
+          }
+        }
+
+    },
+    "components":{
+        "schemas":
+        {
+            "User":{
+                "type":"object",
+                "properties":{
+                    "Firstname":{
+                        "type":"string"
+                    },
+                    "Lastname":{
+                        "type":"string"
+                    },
+                    "email":{
+                        "type":"string"
+                    },
+                    "password":{
+                        "type":"string"
+                    },
+                    "confirmPassword":{
+                        "type":"string"
+                    },
+                    "role":{
+                        "type":"string"
+                    }
+                },
+                "required":["firstname","lastname","email","password","confirmPassword","role"]
+            }
+        }
+    }
+}

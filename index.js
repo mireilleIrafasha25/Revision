@@ -3,6 +3,8 @@ import mongoose from "mongoose"
 import router from "./route/index.js"
 import dotenv from "dotenv"
 import errorHandler from "./middleware/errorHandler.js"
+import documentation from "./doc/swagger.json" assert{type:"json"}
+import swaggerUi from "swagger-ui-express" 
 const app=express();
 //time seconds
 const options = {
@@ -14,6 +16,7 @@ const options = {
   };
 dotenv.config();
 app.use(express.json());
+app.use("/api_docs",swaggerUi.serve,swaggerUi.setup(documentation))
 app.use("/weeding",router)
 mongoose.connect(`${process.env.db}`,options)
 .then(()=>
