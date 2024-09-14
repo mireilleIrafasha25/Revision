@@ -214,6 +214,28 @@
               }
           }
         },
+        "/user/listAll":{
+          "get":{
+            "tags":["Users"],
+            "summary":"Get all users",
+            "description":"Get all users",
+            "responses":{
+              "200":{
+                "description":"All users retrieved",
+                "content":{
+                  "application/json":{
+                    "schema":{
+                        "type":"array",
+                        "items":{
+                          "$ref":"#/components/schemas/User"
+                        }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "/user/forgotPassword":{
           "post":{
             "tags":["Users"],
@@ -286,7 +308,7 @@
               }
           }
         },
-        "/user/resetPassword":{
+        "/user/reset":{
           "post":{
             "tags":["Users"],
             "summary":"Reset password",
