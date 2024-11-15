@@ -2,8 +2,8 @@
     "swagger":"2.0",
     "info":{
         "version":"1.0.0",
-        "title":"User Management API",
-        "description":"A simple API for managing users",
+        "title":"Art_Connect",
+        "description":"A simple API for Art_Connect",
         "contact":{
             "email":"mireilleirafasha@gmail.com"
         },
@@ -16,15 +16,15 @@
         "description":"Find more info here",
         "url":"https://github.com/mireilleIrafasha25/Revision.git"
     },
-    "basePath":"/weeding",
-    "host":"localhost:5009",
+    "basePath":"/Art_Connect",
+    "host":"localhost:5007",
     "servers":[
         {
-            "url":"http://localhost:5009",
+            "url":"http://localhost:5007",
             "description":"Local server"
         },
         {
-            "url":"https://api.example.com",
+            "url":"https://revision-br6k.onrender.com/Art_Connect",
             "description":"Production server"
         }
     ],
@@ -34,8 +34,8 @@
     ],
     "tags":[
         {
-            "name":"revision",
-    "description":"Operation on managing user management"}
+            "name":"Art_Connect",
+    "description":"Operation on API for Art_connect"}
     ],
     "paths":{
         "/user/signup":{

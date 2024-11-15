@@ -17,7 +17,7 @@ const options = {
 dotenv.config();
 app.use(express.json());
 app.use("/api_docs",swaggerUi.serve,swaggerUi.setup(documentation))
-app.use("/weeding",router)
+app.use("/Art_Connect",router)
 mongoose.connect(`${process.env.db}`,options)
 .then(()=>
 {
