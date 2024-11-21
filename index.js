@@ -3,10 +3,14 @@ import mongoose from "mongoose"
 import router from "./route/index.js"
 import dotenv from "dotenv"
 import errorHandler from "./middleware/errorHandler.js"
-import documentation from "./doc/swagger.json" assert{type:"json"}
+//import documentation from "./doc/swagger.json" assert{type:"json"}
 import swaggerUi from "swagger-ui-express" 
 import cors from "cors"
 const app=express();
+import fs from "fs";
+
+const documentation = JSON.parse(fs.readFileSync("./doc/swagger.json", "utf8"));
+
 //time seconds
 const options = {
     useNewUrlParser: true,
