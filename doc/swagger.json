@@ -24,13 +24,13 @@
             "description":"Local server"
         },
         {
-            "url":"https://revision-br6k.onrender.com/Art_Connect",
+            "url":"https://revision-br6k.onrender.com",
             "description":"Production server"
         }
     ],
     "schemes":[
-        "http",
-        "https"
+        "https",
+        "http"
     ],
     "tags":[
         {
